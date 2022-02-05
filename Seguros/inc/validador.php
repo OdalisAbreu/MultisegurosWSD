@@ -79,8 +79,5 @@
 			}else{
 				return 'La marca no se corresponde con el modelo.';
 			}
-
-
-
 	}
 ?>

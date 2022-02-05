@@ -100,7 +100,7 @@ if ($_POST) {
 			// Validar el Vehiculo 
 		$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
 		if($model != 'Ok'){
-			exit("41 /No valido/00 ");
+			exit("41 /".$model."/00 ");
 		}else{
 			exit("41 /Es Valido/00 ");
 		}
