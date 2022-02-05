@@ -1,0 +1,9 @@
+[20-Nov-2017 08:26:10 America/Denver] PHP Fatal error:  Call to undefined function Auditoria() in /home/multiseguroscom/public_html/ws6_3_8/GET_Balance.php on line 55
+[20-Nov-2017 08:27:02 America/Denver] PHP Fatal error:  Call to undefined function Auditoria() in /home/multiseguroscom/public_html/ws6_3_8/GET_Balance.php on line 55
+[20-Nov-2017 08:27:35 America/Denver] PHP Fatal error:  Call to undefined function Auditoria() in /home/multiseguroscom/public_html/ws6_3_8/GET_Balance.php on line 55
+[01-Feb-2022 21:09:25 America/Anguilla] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/multiseguroscom/public_html/ws_dev/GET_Client.php on line 34
+[01-Feb-2022 22:40:38 America/Anguilla] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/multiseguroscom/public_html/ws_dev/GET_Client.php on line 34
+[01-Feb-2022 22:48:12 America/Anguilla] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/multiseguroscom/public_html/ws_dev/GET_Client.php on line 34
+[01-Feb-2022 22:49:24 America/Anguilla] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/multiseguroscom/public_html/ws_dev/GET_Client.php on line 34
+[01-Feb-2022 22:50:12 America/Anguilla] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/multiseguroscom/public_html/ws_dev/GET_Client.php on line 34
+[01-Feb-2022 22:56:07 America/Anguilla] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/multiseguroscom/public_html/ws_dev/GET_Client.php on line 34
