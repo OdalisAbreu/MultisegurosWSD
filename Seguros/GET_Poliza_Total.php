@@ -101,10 +101,7 @@ if ($_POST) {
 		$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
 		if($model != 'Ok'){
 			exit("41 /".$model."/00 ");
-		}else{
-			exit("41 /Es Valido/00 ");
 		}
-		exit();
 			// Validar si tiene servicios 
 		if($_POST['serv_adc'] == 0){
 			if ($monto_poliza == $_POST['total']){
