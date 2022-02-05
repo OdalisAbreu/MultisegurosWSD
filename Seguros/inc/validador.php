@@ -69,15 +69,16 @@
 	function validateModel($idMarca, $idModel, $tipo ){
 			$query = mysql_query("SELECT id, IDMARCA, tipo FROM seguro_modelos where id = $idModel");
 			$model = mysql_fetch_array($query);
-
-			if($model['IDMARCA'] == $idMarca){
-				if($model['tipo'] == $tipo){
-					return 'Ok';
+			if($model['tipo']){
+				if($model['IDMARCA'] == $idMarca){
+					if($model['tipo'] == $tipo){
+						return 'Ok';
+					}else{
+						return 'El tipo no se corresponde con el modelo.';	
+					}
 				}else{
-					return 'El tipo no se corresponde con el modelo.';	
+					return 'La marca no se corresponde con el modelo.';
 				}
-			}else{
-				return 'La marca no se corresponde con el modelo.';
 			}
 	}
 ?>
