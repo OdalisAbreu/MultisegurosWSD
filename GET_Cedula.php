@@ -72,8 +72,21 @@ function get_Cedula($usuario,$password,$cedula){
 				WHERE asegurado_cedula='".$cedula."'
 				ORDER BY id DESC ");
 				
+	       if(mysql_num_rows($queryd) > 0){
 				$UU2 = mysql_num_rows($queryd);
-   			if ($UU2 >0){
+		   }else{
+				$queryd=mysql_query("
+				SELECT * FROM seguro_clientes
+				WHERE asegurado_pasaporte='".$cedula."'
+				ORDER BY id DESC ");
+				if(mysql_num_rows($queryd) > 0){
+					$UU2 = mysql_num_rows($queryd);
+				}else{
+					$UU2 = 0;
+				}
+		   }
+ 
+				if ($UU2 >0){
 				
 				while($row=mysql_fetch_array($queryd)){
 						
