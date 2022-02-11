@@ -100,7 +100,7 @@ function get_Cedula($usuario,$password,$cedula){
 	 					$idseg = str_pad($Rtrans[6], 6, "0", STR_PAD_LEFT);
 	 					$prefi = $pref."-".$idseg;
 	 
-					  echo $row['asegurado_nombres']."|".$row['asegurado_apellidos']."|".$row['asegurado_cedula']."|".$row['asegurado_direccion']."|".$row['asegurado_telefono1']."|".$Rveh[0]."|".$Rveh[1]."|".$Rveh[2]."|".$Rveh[3]."|".$Rveh[4]."|".$Rveh[5]."|".$Rtrans[2]."|".$Rtrans[1]."|".$Rtrans[0]."|".$Rtrans[4]."|".$prefi.";";
+					  echo $row['asegurado_nombres']."|".$row['asegurado_apellidos']."|".$row['asegurado_cedula']."|".$row['asegurado_direccion']."|".$row['asegurado_telefono1']."|".$Rveh[0]."|".$Rveh[1]."|".$Rveh[2]."|".$Rveh[3]."|".$Rveh[4]."|".$Rveh[5]."|".$Rtrans[2]."|".$Rtrans[1]."|".$Rtrans[0]."|".$Rtrans[4]."|".$prefi."|".$row['asegurado_pasaporte'].";";
 					  
 					  
 				 }
