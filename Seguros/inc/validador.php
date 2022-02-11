@@ -74,7 +74,7 @@
 					if($model['tipo'] == $tipo){
 						return 'Ok';
 					}else{
-						return 'El tipo no se corresponde con el modelo.';	
+						return 'El tipo vehiculo no se corresponde con el modelo, lo(s) tipos(s) permitido(s) para este modelo es: ';	
 					}
 				}else{
 					return 'La marca no se corresponde con el modelo.';

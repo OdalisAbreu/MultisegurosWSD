@@ -98,10 +98,10 @@ if ($_POST) {
 		if ($_POST['vigencia_poliza'] == 12) $monto_poliza = $rowT['12meses'];
 
 			// Validar el Vehiculo 
-		$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
+	/*	$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
 		if($model != 'Ok'){
 			exit("41 /".$model."/00 ");
-		}
+		}*/
 			// Validar si tiene servicios 
 		if($_POST['serv_adc'] == 0){
 			if ($monto_poliza == $_POST['total']){
