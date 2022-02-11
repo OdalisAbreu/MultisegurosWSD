@@ -71,10 +71,14 @@
 			$model = mysql_fetch_array($query);
 			if($model['tipo']){
 				if($model['IDMARCA'] == $idMarca){
-					if($model['tipo'] == $tipo){
+					if(substr_count($model['tipo'],"".$tipo."-")>0){
 						return 'Ok';
 					}else{
-						return 'El tipo vehiculo no se corresponde con el modelo, lo(s) tipos(s) permitido(s) para este modelo es: ';	
+						if(substr_count($model['tipo'],"".$tipo."-")>1){
+							return 'El tipo vehiculo no se corresponde con el modelo, los tipos permitidos para este modelo es: ';	
+						}else{
+							return 'El tipo vehiculo no se corresponde con el modelo, el tipo permitido para este modelo es: ';
+						}
 					}
 				}else{
 					return 'La marca no se corresponde con el modelo.';
