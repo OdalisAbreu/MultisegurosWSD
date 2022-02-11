@@ -74,7 +74,7 @@
 					if(substr_count($model['tipo'],"".$tipo."-")>0){
 						return 'Ok';
 					}else{
-						if(substr_count($model['tipo'],"".$tipo."-")>1){
+						if(substr_count($model['tipo'],"".$tipo."-")>0){
 							return 'El tipo vehiculo no se corresponde con el modelo, los tipos permitidos para este modelo es: ';	
 						}else{
 							return 'El tipo vehiculo no se corresponde con el modelo, el tipo permitido para este modelo es: ';
