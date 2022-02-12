@@ -81,7 +81,7 @@
 						while($row = mysql_fetch_array($rescat)){
 							if(substr_count($model['tipo'],"".$row['veh_tipo']."-")>0){
 								$cont++;
-								$value = $value.' '.$row['id'].' - '.$row['nombre']; 
+								$value = $value.'  '.$row['id'].'- '.$row['nombre']; 
 							}
 						}
 							return 'El tipo vehiculo no se corresponde con el modelo, el o los tipos permitido: '.$value;
