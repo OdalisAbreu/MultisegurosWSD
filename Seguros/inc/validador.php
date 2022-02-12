@@ -84,7 +84,11 @@
 								$value = $value.'  '.$row['id'].'- '.$row['nombre']; 
 							}
 						}
-							return 'El tipo vehiculo no se corresponde con el modelo, el o los tipos permitido: '.$value;
+							if($cont > 1){
+								return 'El tipo vehiculo no se corresponde con el modelo, los tipos permitido son: '.$value;
+							}else{
+								return 'El tipo vehiculo no se corresponde con el modelo, el tipo permitido es: '.$value;
+							}
 					}
 				}else{
 					return 'La marca no se corresponde con el modelo.';
