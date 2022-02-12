@@ -75,7 +75,14 @@
 					if(substr_count($model['tipo'],"".$tipo."-")>0){
 						return 'Ok';
 					}else{
-							return 'El tipo vehiculo no se corresponde con el modelo, el o los tipos permitido: ';
+						$rescat = mysql_query("SELECT id, nombre, veh_tipo from seguro_tarifas WHERE activo ='si' order by nombre");
+						$cont = '0';
+						while($row = mysql_fetch_array($rescat)){
+							if(substr_count($model['tipo'],"".$row['veh_tipo']."-")>0){
+								$cont++;
+							}
+						}
+							return 'El tipo vehiculo no se corresponde con el modelo, el o los tipos permitido: '.$cont;
 					}
 				}else{
 					return 'La marca no se corresponde con el modelo.';
