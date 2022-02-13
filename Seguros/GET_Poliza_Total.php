@@ -6,6 +6,7 @@ include("inc/conexion_inc.php");
 include('inc/validador.php');
 include('../inc/AntiInyection.func.php');
 include('../inc/auditoria.balance.func.php');
+include('../controller/Records.php');
 
 Conectarse();
 
@@ -83,6 +84,11 @@ if ($_POST) {
 		$nacionalidad = 'Domnicano';
 		
 	}
+	// Validar el Vehiculo 
+	$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
+	if($model != 'Ok'){
+		exit("41 /".$model."/00 ");
+	}
 	//Valida el total si la orden lo contiene
 	if($_POST['total']){
 		
@@ -97,11 +103,6 @@ if ($_POST) {
 		if ($_POST['vigencia_poliza'] == 6)  $monto_poliza = $rowT['6meses'];
 		if ($_POST['vigencia_poliza'] == 12) $monto_poliza = $rowT['12meses'];
 
-			// Validar el Vehiculo 
-		$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
-		if($model != 'Ok'){
-			exit("41 /".$model."/00 ");
-		}
 			// Validar si tiene servicios 
 		if($_POST['serv_adc'] == 0){
 			if ($monto_poliza == $_POST['total']){
@@ -133,7 +134,8 @@ if ($_POST) {
 			if ($totalFactura == $_POST['total']){
 
 			}else{
-				exit("40 /El valor enviado: ".$_POST['total']." no corresponde al valor real de la factura: ".$totalFactura."/00 ");
+				exit("40 /El valor enviado: ".$_POST['xID']." - ".$_POST['clave']." - ".$_POST['usuario']." - ".$_POST['idApi']."/00 ");
+				//exit("40 /El valor enviado: ".$_POST['total']." no corresponde al valor real de la factura: ".$totalFactura."/00 ");
 			}
 		}
 		
