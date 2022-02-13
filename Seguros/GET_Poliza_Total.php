@@ -291,6 +291,7 @@ if ($_POST) {
 	if ($respuesta[0] == '00') {
 		//RETORNARLE AL PROGRAMADOR
 		Auditoria($user['user'], $user['password'], $user['tipo_conex'], 'Seguro Procesado Correctamente ID:' . $respuesta[2] . '', 'venta_ok', '00', '', $user['balance']);
+		
 		$records = new records;
 		$record = $records->newRecord($_POST['user_id'], 'Venta Poliza', $respuesta[2]);
 	
