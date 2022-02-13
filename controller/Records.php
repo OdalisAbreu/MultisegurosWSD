@@ -2,7 +2,6 @@
     class records{
         
         function newRecord($userId, $type, $references){
-            $date = 
            $record =  mysql_query(
             "INSERT INTO records (user_id, type, references, date) 
             VALUES 
