@@ -85,9 +85,9 @@
 							}
 						}
 							if($cont > 1){
-								return 'El tipo vehículo no se corresponde con el modelo, los tipos permitido son: '.$value;
+								return 'El tipo vehículo no se corresponde con el modelo, los tipos de vehículos permitidos para este modelo son: '.$value;
 							}else{
-								return 'El tipo vehículo no se corresponde con el modelo, el tipo permitido es: '.$value;
+								return 'El tipo vehículo no se corresponde con el modelo, el tipo de vehículo permitido para este modelo es: '.$value;
 							}
 					}
 				}else{
