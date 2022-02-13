@@ -51,12 +51,7 @@
 		
 	}
 	
-	function newRecord($userId, $type, $references){
-		Conectarse();
-	   $record =  mysql_query("INSERT INTO records (user_id, type, references, date) VALUES ('".$userId."', '".$type."', '".$references."', '".date('Y/m/d H:i:s')."')");
-	   
-	   exit('14/'.$record.'/00');
-	}
+	
 	
 	function IfSeguroActivo($id){
 		   $quT=mysql_query("
