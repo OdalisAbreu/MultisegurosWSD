@@ -134,7 +134,7 @@ if ($_POST) {
 			if ($totalFactura == $_POST['total']){
 
 			}else{
-				exit("40 /El valor enviado: ".$_POST['xID']." - ".$_POST['clave']." - ".$_POST['usuario']." - ".$_POST['idApi']."/00 ");
+				exit("40 /El valor enviado: ".$_POST['xID']." - ".$_POST['clave']." - ".$_POST['usuario']." - ".$_POST['idApi']." - ".$_POST['idApi']."/00 ");
 				//exit("40 /El valor enviado: ".$_POST['total']." no corresponde al valor real de la factura: ".$totalFactura."/00 ");
 			}
 		}
