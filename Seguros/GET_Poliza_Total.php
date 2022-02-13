@@ -180,7 +180,8 @@ if ($_POST) {
 		if ($user['activo'] == 'si') {
 
 			$_POST['user_id'] = $user['id'];
-			exit("40 /El valor enviado: ".$_POST['user_id']."/00 ");
+			$chanel = $user['tipo_conex'];
+			exit("40 /El valor enviado: ".$_POST['user_id']." - ".$chanel."/00 ");
 		} else {
 
 			Auditoria($user['user'], $user['password'], $user['tipo_conex'], 'Usuario inactivo', 'venta_error', '18', '', $user['balance']);
