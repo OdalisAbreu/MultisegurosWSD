@@ -283,16 +283,17 @@ if ($_POST) {
 
 
 		//Guarda el registro de la venta de la poliza 
-		/*$records = new records;
-		$record = $records->newRecord($_POST['user_id'], 'Venta Poliza', $respuesta[2]);*/
-
-		exit('14/'.$respuesta[0].' - '.$respuesta[1].' - '.$respuesta[2].' - '.$_POST['user_id'].'/00');
+		
+		
 
 	error_log(json_encode($respuesta));
 	// RESPUESTA RECARGA ENVIADA.gg
 	if ($respuesta[0] == '00') {
 		//RETORNARLE AL PROGRAMADOR
 		Auditoria($user['user'], $user['password'], $user['tipo_conex'], 'Seguro Procesado Correctamente ID:' . $respuesta[2] . '', 'venta_ok', '00', '', $user['balance']);
+		$records = new records;
+		$record = $records->newRecord($_POST['user_id'], 'Venta Poliza', $respuesta[2]);
+
 		//PARA GUARDAR EL HISTORIAL DE MONTO AL MOMENTO DE VENDER
 		function VehiculoHistory($id)
 		{
