@@ -134,8 +134,7 @@ if ($_POST) {
 			if ($totalFactura == $_POST['total']){
 
 			}else{
-				exit("40 /El valor enviado: ".$_REQUEST['usuario']." - ".$_POST['xID']." - ".$_POST['clave']." - ".$_POST['usuario']." - ".$_POST['idApi']." - ".$_REQUEST['usuario']."/00 ");
-				//exit("40 /El valor enviado: ".$_POST['total']." no corresponde al valor real de la factura: ".$totalFactura."/00 ");
+				exit("40 /El valor enviado: ".$_POST['total']." no corresponde al valor real de la factura: ".$totalFactura."/00 ");
 			}
 		}
 		
@@ -181,6 +180,7 @@ if ($_POST) {
 		if ($user['activo'] == 'si') {
 
 			$_POST['user_id'] = $user['id'];
+			exit("40 /El valor enviado: ".$_POST['user_id']."/00 ");
 		} else {
 
 			Auditoria($user['user'], $user['password'], $user['tipo_conex'], 'Usuario inactivo', 'venta_error', '18', '', $user['balance']);
