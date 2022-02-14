@@ -6,6 +6,7 @@ include("inc/conexion_inc.php");
 include('inc/validador.php');
 include('../inc/AntiInyection.func.php');
 include('../inc/auditoria.balance.func.php');
+include('../controller/Records.php');
 
 Conectarse();
 
@@ -222,6 +223,8 @@ if ($_POST) {
 		//RETORNARLE AL PROGRAMADOR
 		Auditoria($user['user'], $user['password'], $user['tipo_conex'], 'Seguro Procesado Correctamente ID:' . $respuesta[2] . '', 'venta_ok', '00', '', $user['balance']);
 
+		$records = new records;
+		$record = $records->newRecord($_POST['user_id'], 'Venta Poliza', $respuesta[2]);
 
 		//PARA GUARDAR EL HISTORIAL DE MONTO AL MOMENTO DE VENDER
 		function VehiculoHistory($id)
