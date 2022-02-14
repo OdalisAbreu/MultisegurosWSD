@@ -292,9 +292,14 @@ if ($_POST) {
 		//RETORNARLE AL PROGRAMADOR
 		Auditoria($user['user'], $user['password'], $user['tipo_conex'], 'Seguro Procesado Correctamente ID:' . $respuesta[2] . '', 'venta_ok', '00', '', $user['balance']);
 		
-		$records = new records;
-		$record = $records->newRecord($_POST['user_id'], 'Venta Poliza', $respuesta[2]);
+		//$records = new records;
+		//$record = $records->newRecord($_POST['user_id'], 'Venta Poliza', $respuesta[2]);
+		$record =  mysql_query("INSERT INTO records (id_user, type, references, date) VALUES 
+		('".$userId."', '".$type."', '".$references."', '".date("Y-m-d H:i:s")."')");
 	
+		if (!$record) {
+		 exit('144/'.die('Consulta no válida: ' . mysql_error()).' NUM/00');
+		 }
 
 		//PARA GUARDAR EL HISTORIAL DE MONTO AL MOMENTO DE VENDER
 		function VehiculoHistory($id)
