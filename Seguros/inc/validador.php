@@ -81,7 +81,7 @@
 						while($row = mysql_fetch_array($rescat)){
 							if(substr_count($model['tipo'],"".$row['veh_tipo']."-")>0){
 								$cont++;
-								$value = $value.'  '.$row['id'].'- '.$row['nombre']; 
+								$value = $value.'  '.$row['nombre']; 
 							}
 						}
 							if($cont > 1){
