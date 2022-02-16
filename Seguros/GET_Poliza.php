@@ -1,10 +1,12 @@
 <?
 //exit("Seguro no procesado");
+// error_reporting(E_ALL);
 ini_set('display_errors', 0);
 include("inc/conexion_inc.php");
 include('inc/validador.php');
 include('../inc/AntiInyection.func.php');
 include('../inc/auditoria.balance.func.php');
+include('../controller/Records.php');
 
 Conectarse();
 
@@ -38,9 +40,11 @@ if ($_REQUEST['idApi'] == '2wessd@d3e') {
 	$_POST['email'] = $_REQUEST['email'];
 	$_POST['direccion'] = $_REQUEST['direccion'];
 	$_POST['ciudad'] = $_REQUEST['ciudad'];
+	$_POST['nacionalidad'] = $_REQUEST['nacionalidad'];
 
 	$_POST['aseguradora'] = $_REQUEST['aseguradora'];
 	$_POST['vigencia_poliza'] = $_REQUEST['vigencia_poliza'];
+	$_POST['total'] = $_REQUEST['total'];
 	//$_POST['producto'] 			= $_REQUEST['producto'];
 	$_POST['serv_adc'] = $_REQUEST['serv_adc'];
 	if (!empty($f1)) {
@@ -54,35 +58,86 @@ if ($_REQUEST['idApi'] == '2wessd@d3e') {
 
 //echo $_REQUEST['vigencia_poliza'];
 
-
+error_log(json_encode($_POST));
 if ($_POST) {
 	$hoy = date("Ymd");
 	$Choy = str_replace("-", "", $_POST['fecha_inicio']);
 
 	if ($Choy < $hoy) {
 
-		//$_POST['fecha_inicio'] = date("Y-m-d");
-		Auditoria(
-			$_POST['usuario'],
-			$_POST['clave'],
-			'',
-			"Error en fecha, fecha no identificada, usted envio REQUEST:" . $_POST['fecha_inicio'] . ", HOY:$hoy, CHOY:$Choy, PV: " . $_POST['xID'],
-			'venta_error',
-			'17',
-			'',
-			'',
-			json_encode($_POST)
-		);
+		$_POST['fecha_inicio'] = date("Y-m-d");
+		Auditoria($_POST['usuario'], $_POST['clave'], '', "Error en fecha, fecha no identificada, usted envio REQUEST:${$_REQUEST['fecha_inicio']}, HOY:$hoy, CHOY:$Choy, PV: ${$_POST['xID']} ", 'venta_error', '17', '', '');
 	} elseif ($Choy > $hoy) {
 
 		$_POST['fecha_inicio'] = $_POST['fecha_inicio'];
 	}
-
 	//echo "v: ".$_POST['vigencia_poliza'];
 	if (IfVigencia($_REQUEST['vigencia_poliza']) == '15') {
 
 		Auditoria($_POST['usuario'], $_POST['clave'], '', 'Error en parametros, vigencia no identificada, usted envio  ' . $_POST['vigencia_poliza'] . '', 'venta_error', '22', '', '');
-		exit("22/Vigencia no permitida/00");
+		exit("22/Vigencia no permitida/00 ");
+	}
+	//valida la nacionalidad
+	if($_POST['nacionalidad'] ){
+		$nacionalidad = $_POST['nacionalidad'];
+	}else{
+		$nacionalidad = 'Domnicano';
+		
+	}
+	// Validar el Vehiculo 
+	$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
+	if($model != 'Ok'){
+		exit("41 /".$model."/00 ");
+	}
+	//Valida el total si la orden lo contiene
+	if($_POST['total']){
+		
+		//$monto_seguro = IfMontoTarifasHistory($_POST['tipo'], $_POST['vigencia_poliza']);
+		$queryT = mysql_query("
+		   SELECT id,veh_tipo,3meses,6meses,12meses 
+		   FROM seguro_tarifas 
+		   WHERE veh_tipo ='".$_POST['tipo']."'  LIMIT 1");
+		$rowT = mysql_fetch_array($queryT);
+
+		if ($_POST['vigencia_poliza'] == 3)  $monto_poliza = $rowT['3meses'];
+		if ($_POST['vigencia_poliza'] == 6)  $monto_poliza = $rowT['6meses'];
+		if ($_POST['vigencia_poliza'] == 12) $monto_poliza = $rowT['12meses'];
+
+			// Validar si tiene servicios 
+		if($_POST['serv_adc'] == 0){
+			if ($monto_poliza == $_POST['total']){
+
+			}else{
+				exit("40 /El valor enviado: ".$_POST['total']." no corresponde al valor real de la factura: ".$monto_poliza."/00 ");
+			}
+		}else{
+			$montoTotalServicio = 0;
+			$porciones = explode("-", $_POST['serv_adc']);
+			
+			for ($i = 0; $i < count($porciones); $i++) {
+				
+				if ($porciones[$i] > 0) {
+					
+				//	$MontoServ = MontoServicioHistory($porciones[$i], $_POST['vigencia_poliza']);
+					$r6 = mysql_query("SELECT id, 3meses, 6meses, 12meses FROM servicios WHERE id='" . $porciones[$i] . "'LIMIT 1");
+							if ($porciones[$i] > 0) {
+								while ($row6 = mysql_fetch_array($r6)) {
+									if ($_POST['vigencia_poliza'] == 3)  $MontoServ = $row6['3meses'];
+									if ($_POST['vigencia_poliza'] == 6)  $MontoServ = $row6['6meses'];
+									if ($_POST['vigencia_poliza'] == 12) $MontoServ  = $row6['12meses'];
+								}
+							}
+						$montoTotalServicio = 	$montoTotalServicio + $MontoServ;
+				}
+			}
+			$totalFactura = $monto_poliza + $montoTotalServicio;//Acumula el total de la factura
+			if ($totalFactura == $_POST['total']){
+
+			}else{
+				exit("40 /El valor enviado: ".$_POST['total']." no corresponde al valor real de la factura: ".$totalFactura."/00 ");
+			}
+		}
+		
 	}
 
 
@@ -142,7 +197,7 @@ if ($_POST) {
 	mysql_query(
 		"INSERT INTO seguro_clientes 
 		(user_id, asegurado_nombres, asegurado_apellidos, asegurado_cedula, asegurado_pasaporte,
-		asegurado_direccion, asegurado_telefono1, asegurado_email, ciudad, cliente_registro) 
+		asegurado_direccion, asegurado_telefono1, asegurado_email, ciudad, asegurado_nacionalidad, cliente_registro) 
 		VALUES 
 		('" . $_POST['user_id'] . "',
 		'" . $_POST['nombres'] . "',
@@ -153,6 +208,7 @@ if ($_POST) {
 		'" . $_POST['telefono1'] . "',
 		'" . $_POST['email'] . "',
 		'" . $_POST['ciudad'] . "',
+		'".$nacionalidad ."',
 		'" . date("Y-m-d H:i:s") . "'
 		
 		)"
@@ -215,7 +271,7 @@ if ($_POST) {
 		"&id_aseg=" . $_POST['aseguradora'] .
 		"&id_plan=" . $_POST['plan'] . "";
 	$url = str_replace(" ", "+", $url);
-
+	error_log($url);
 	$getWS 	= file_get_contents($url);
 
 	/*if($_SESSION['user_id']=='13'){
@@ -225,12 +281,20 @@ if ($_POST) {
 
 	$respuesta = explode("/", $getWS);
 
+
+		//Guarda el registro de la venta de la poliza 
+		
+		
+
+	error_log(json_encode($respuesta));
 	// RESPUESTA RECARGA ENVIADA.gg
 	if ($respuesta[0] == '00') {
 		//RETORNARLE AL PROGRAMADOR
 		Auditoria($user['user'], $user['password'], $user['tipo_conex'], 'Seguro Procesado Correctamente ID:' . $respuesta[2] . '', 'venta_ok', '00', '', $user['balance']);
-
-
+		
+		$records = new records;
+		$record = $records->newRecord($_POST['user_id'], 'Venta Poliza', $respuesta[2]);
+	
 		//PARA GUARDAR EL HISTORIAL DE MONTO AL MOMENTO DE VENDER
 		function VehiculoHistory($id)
 		{
