@@ -194,7 +194,7 @@ if ($_POST) {
 
 
 	/*PARA REGISTRAR DATOS DEL USUARIO*/
-	mysql_query(
+	$register =  mysql_query(
 		"INSERT INTO seguro_clientes 
 		(user_id, asegurado_nombres, asegurado_apellidos, asegurado_cedula, asegurado_pasaporte,
 		asegurado_direccion, asegurado_telefono1, asegurado_email, ciudad, asegurado_nacionalidad, cliente_registro) 
@@ -213,6 +213,9 @@ if ($_POST) {
 		
 		)"
 	);
+	if (!$register) {
+		exit('100/'.die('Usuario no registrado: ' . mysql_error()).'/00');
+	}
 
 	//echo mysql_error();
 	$id_cliente = mysql_insert_id();
