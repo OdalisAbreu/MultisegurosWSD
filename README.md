@@ -1,4 +1,3 @@
-V 1.1.36  //Log al momento de ingresar una marca invalida
+V 1.1.37  //Log al momento de ingresar una marca invalida
 
-1. Validando el tipo de Vehiculo
-2. Validar el Vehiculo esta en Get poliza lin 101
+1. Agregar Lin. 70 a Get_Total Poliza to Prod

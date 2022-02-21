@@ -1,5 +1,4 @@
 <?php
-// error_reporting(E_ALL);
 ini_set('display_errors', 0);
 include 'inc/conexion_inc.php';
 define("TIM_INIC", getTiempo());

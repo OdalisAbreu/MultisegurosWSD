@@ -5,7 +5,7 @@ include("inc/conexion_inc.php");
 include('inc/validador.php');
 include('../inc/AntiInyection.func.php');
 include('../inc/auditoria.balance.func.php');
-
+include('../controller/Records.php');
 Conectarse();
 
 
@@ -77,6 +77,11 @@ if ($_POST) {
 
 		$_POST['fecha_inicio'] = $_POST['fecha_inicio'];
 	}
+		// Validar el Vehiculo 
+		$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
+		if($model != 'Ok'){
+			exit("41 /".$model."/00 ");
+		}
 
 	//echo "v: ".$_POST['vigencia_poliza'];
 	if (IfVigencia($_REQUEST['vigencia_poliza']) == '15') {
@@ -190,7 +195,7 @@ if ($_POST) {
 	$POSTaseguradora = $_POST['aseguradora'];
 
 	//$xID 	= "WEB-".$_POST['user_id'].date('Ymdhis');
-	$url = "https://multiseguros.com.do/ws6_3_8/Seguros/GET_Seguro.php" .
+	$url = "https://multiseguros.com.do/ws_dev/Seguros/GET_Seguro.php" .
 		"?usuario=" . trim($_POST['usuario']) .
 		"&xID=" . $_POST['xID'] .
 		"&password=" . trim($_POST['clave']) .
