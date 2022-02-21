@@ -62,8 +62,8 @@ error_log(json_encode($_POST));
 if ($_POST) {
 	$hoy = date("Y-m-d");
 	$Choy = str_replace("-", "", $_POST['fecha_inicio']);
-	$fechaActual = new DateTime($hoy);
-	$fechaEnviada = new DateTime($_POST['fecha_inicio']);
+	$fechaActual = new DateTime("now");
+	$fechaEnviada = new DateTime($Choy);
 	exit("30/La Fecha de inicio de la poliza debe ser igual o superior a: ".$fechaActual." - ".$fechaEnviada."/00 ");
 	if ($fechaEnviada < $fechaActual) {
 
