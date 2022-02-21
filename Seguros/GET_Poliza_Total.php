@@ -62,7 +62,7 @@ error_log(json_encode($_POST));
 if ($_POST) {
 	$hoy = date("Ymd");
 	$Choy = str_replace("-", "", $_POST['fecha_inicio']);
-	exit("30/La Fecha de inicio de la poliza debe ser igual o superior a: ".$hoy."/00 ");
+	exit("30/La Fecha de inicio de la poliza debe ser igual o superior a: ".$hoy." y ".$Choy."/00 ");
 	if ($Choy < $hoy) {
 
 		$_POST['fecha_inicio'] = date("Y-m-d");
