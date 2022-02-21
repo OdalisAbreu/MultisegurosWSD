@@ -62,15 +62,12 @@ error_log(json_encode($_POST));
 if ($_POST) {
 	$hoy = date("Ymd");
 	$Choy = str_replace("-", "", $_POST['fecha_inicio']);
-	$fechaActual = new DateTime($hoy);
-	$fechaEnviada = new DateTime($Choy);
 
-	if ($fechaEnviada < $fechaActual) {
+	if ($Choy < $hoy) {
 
 		$_POST['fecha_inicio'] = date("Y-m-d");
 		Auditoria($_POST['usuario'], $_POST['clave'], '', "Error en fecha, fecha no identificada, usted envio REQUEST:${$_REQUEST['fecha_inicio']}, HOY:$hoy, CHOY:$Choy, PV: ${$_POST['xID']} ", 'venta_error', '17', '', '');
-		exit("30/La Fecha de inicio de la poliza debe ser igual o superior a: ".$hoy."/00 ");
-	} elseif ($fechaEnviada > $fechaActual) {
+	} elseif ($Choy > $hoy) {
 
 		$_POST['fecha_inicio'] = $_POST['fecha_inicio'];
 	}

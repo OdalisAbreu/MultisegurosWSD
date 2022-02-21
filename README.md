@@ -1,3 +1,3 @@
-V 1.1.49 //Log al momento de ingresar una marca invalida
+V 1.1.50//Log al momento de ingresar una marca invalida
 
-1. Agregar Lin. 65-66-72 a Get_Total Poliza to Prod
+1. 
