@@ -61,7 +61,7 @@ if ($_REQUEST['idApi'] == '2wessd@d3e') {
 error_log(json_encode($_POST));
 if ($_POST) {
 	$hoy = date("Y-m-d");
-	$Choy = $_POST['fecha_inicio'];
+	$Choy = date_format($_POST['fecha_inicio'],"Y-m-d");
 	
 	$fechaActual = date_create($hoy);
 	$fechaPoliza = date_create($Choy);
