@@ -66,7 +66,8 @@ if ($_POST) {
 	$fechaActual = date_create($hoy);
 	$fechaPoliza = date_create($Choy);
 	$cont = (array) date_diff($fechaPoliza, $fechaActual);
-	var_dump($cont);
+	var_dump($fechaActual);
+	var_dump($fechaPoliza);
 	exit("22/".$cont['d']."/00 ");
 
 
