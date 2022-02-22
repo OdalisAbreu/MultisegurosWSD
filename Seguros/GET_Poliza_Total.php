@@ -63,11 +63,11 @@ if ($_POST) {
 	$hoy = date("Ymd");
 	$Choy = str_replace("-", "", $_POST['fecha_inicio']);
 	
-	$fechaActual = new DateTime($hoy);
-	$fechaPoliza = new DateTime($Choy);
+	/*$fechaActual = new DateTime($hoy);
+	$fechaPoliza = new DateTime($Choy);*/
 	//$cont = date_diff($fechaPoliza, $fechaActual);
 
-	exit("22/".$fechaActual." , ".$fechaPoliza."/00 ");
+	exit("22/".$hoy." , ".$Choy."/00 ");
 
 
 	if ($Choy < $hoy) {
