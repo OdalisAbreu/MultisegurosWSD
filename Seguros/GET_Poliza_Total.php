@@ -60,8 +60,15 @@ if ($_REQUEST['idApi'] == '2wessd@d3e') {
 
 error_log(json_encode($_POST));
 if ($_POST) {
-	$hoy = date("Ymd");
-	$Choy = str_replace("-", "", $_POST['fecha_inicio']);
+	$hoy = date("Y-m-d");
+	$Choy =  $_POST['fecha_inicio'];
+	
+	$fechaActual = new DateTime($hoy);
+	$fechaPoliza = new DateTime($Choy);
+
+	$cont = date_diff($fechaPoliza, $fechaActual);
+
+	exit("22/".$cont."/00 ");
 
 	if ($Choy < $hoy) {
 
