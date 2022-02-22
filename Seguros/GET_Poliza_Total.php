@@ -67,7 +67,7 @@ if ($_POST) {
 	$fechaPoliza = date_create($Choy);
 	$cont = date_diff($fechaPoliza, $fechaActual);
 
-	exit("22/".$cont->format('%a')."/00 ");
+	exit("22/".$cont->format('%d')."/00 ");
 
 
 	if ($Choy < $hoy) {
