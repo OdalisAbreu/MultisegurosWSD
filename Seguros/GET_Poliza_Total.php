@@ -61,14 +61,14 @@ if ($_REQUEST['idApi'] == '2wessd@d3e') {
 error_log(json_encode($_POST));
 if ($_POST) {
 	$hoy = date("Y-m-d");
-	$Choy = $_POST['fecha_inicio'];
+	$Choy =  $_POST['fecha_inicio'];
 	
 	$fechaActual = date_create($hoy);
 	$fechaPoliza = date_create($Choy);
-	//$cont = date_diff($fechaPoliza, $fechaActual);
+	$cont = (array) date_diff($fechaPoliza, $fechaActual);
 
-	//exit("22/".$cont->format('%a')."/00 ");
-	exit("22/".$fechaActual." - ".$fechaPoliza."/00 ");
+	exit("22/".$cont['d']."/00 ");
+
 
 	if ($Choy < $hoy) {
 
