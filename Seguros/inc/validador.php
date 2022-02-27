@@ -84,14 +84,14 @@
 			$placasActivas = explode(',',$row['placas']);
 			foreach($placasActivas as $placaActiva){
 				if($placaActiva == $digito){
-					$respuesta = 'OK';
+					$respuesta = 'Ok';
 					break;
 				}else{
 					$respuesta = 'La placa '.$placa.' no corresponde al tipo de vehículo seleccionado';
 				}
 			  }
 		}else{
-			$respuesta = 'OK';
+			$respuesta = 'Ok';
 		}
 
 		//Si no aplica con un digito Validar con dos devuelve OK 
