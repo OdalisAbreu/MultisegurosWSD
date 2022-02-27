@@ -77,7 +77,7 @@
 	function validatePlaca($placa, $tipoVehiculo){
 		//Validar el primer dijito devuelve OK 
 		$digito = substr($placa, 0,1);
-		$r2 = mysql_query("SELECT * from seguro_tarifas WHERE id ='".$tipoVehiculo."'");
+		$r2 = mysql_query("SELECT * from seguro_tarifas WHERE veh_tipo ='".$tipoVehiculo."'");
     	$row = mysql_fetch_array($r2);
 
 		//Si no aplica con un digito Validar con dos devuelve OK 
