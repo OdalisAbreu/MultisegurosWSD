@@ -78,9 +78,10 @@
 		//Validar el primer dijito devuelve OK 
 		$digito = substr($placa, 0,1);
 
+
 		//Si no aplica con un digito Validar con dos devuelve OK 
 		
 		//Si no tiene nada devuelve OK
-		return $digito;
+		return $tipoVehiculo;
 	}	
 ?>

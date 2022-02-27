@@ -1,4 +1,4 @@
-V 1.2.0 //Validando Placa
+V 1.2.1 //Validando Placa
 
 1. function validatePlaca($placa, $tipoVehiculo)
         RUTA: \Seguros\inc\validador.php
