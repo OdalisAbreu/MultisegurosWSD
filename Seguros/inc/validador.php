@@ -87,7 +87,13 @@
 					$respuesta = 'Ok';
 					break;
 				}else{
-					$respuesta = 'La placa '.$placa.' no corresponde al tipo de vehículo seleccionado';
+					$digito = substr($placa, 0,2);
+					if($placaActiva == $digito){
+						$respuesta = 'Ok';
+						break;
+					}else{
+						$respuesta = 'La placa '.$placa.' no corresponde al tipo de vehículo seleccionado';
+					}
 				}
 			  }
 		}else{
