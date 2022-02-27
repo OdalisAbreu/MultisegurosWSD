@@ -77,12 +77,21 @@
 	function validatePlaca($placa, $tipoVehiculo){
 		//Validar el primer dijito devuelve OK 
 		$digito = substr($placa, 0,1);
-		$r2 = mysql_query("SELECT * from seguro_tarifas WHERE veh_tipo ='".$tipoVehiculo."'");
-    	$row = mysql_fetch_array($r2);
+		$query = mysql_query("SELECT * from seguro_tarifas WHERE veh_tipo ='".$tipoVehiculo."'");
+    	$row = mysql_fetch_array($query);
+		$placasActivas = explode(',',$row['placas']);
+		foreach($placasActivas as $placaActiva){
+			if($placaActiva == $digito){
+				$respuesta = 'Lo tiene';
+				break;
+			}else{
+				$respuesta = 'No lo tiene';
+			}
+		  }
 
 		//Si no aplica con un digito Validar con dos devuelve OK 
 		
 		//Si no tiene nada devuelve OK
-		return $row['placas'];
+		return $respuesta;
 	}	
 ?>
