@@ -1,6 +1,9 @@
-V 1.1.63//Validando las Fechas
+V 1.2.0 //Validando Placa
 
-1. 
+1. function validatePlaca($placa, $tipoVehiculo)
+        RUTA: \Seguros\inc\validador.php
+
+        RUTA: \Seguros\GET_Poliza_Total.php
 
 
 

@@ -77,11 +77,12 @@ if ($_POST) {
 
 		$_POST['fecha_inicio'] = $_POST['fecha_inicio'];
 	}
-		// Validar el Vehiculo 
-		$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
-		if($model != 'Ok'){
-			exit("41 /".$model."/00 ");
-		}
+
+	// Validar el Vehiculo 
+	$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
+	if($model != 'Ok'){
+		exit("41 /".$model."/00 ");
+	}
 
 	//echo "v: ".$_POST['vigencia_poliza'];
 	if (IfVigencia($_REQUEST['vigencia_poliza']) == '15') {

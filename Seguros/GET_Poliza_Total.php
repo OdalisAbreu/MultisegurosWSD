@@ -60,16 +60,8 @@ if ($_REQUEST['idApi'] == '2wessd@d3e') {
 
 error_log(json_encode($_POST));
 if ($_POST) {
-	$hoy = date("Y-m-d");
-	$Choy =  $_POST['fecha_inicio'];
-	
-	/*$fechaActual = date_create($hoy);
-	$fechaPoliza = date_create($Choy);
-	$cont = (array) date_diff($fechaPoliza, $fechaActual);
-	var_dump($fechaActual);
-	var_dump($fechaPoliza);
-	exit("22/".$cont['d']."/00 ");
-*/
+	$hoy = date("Ymd");
+	$Choy = str_replace("-", "", $_POST['fecha_inicio']);
 
 	if ($Choy < $hoy) {
 
@@ -90,13 +82,18 @@ if ($_POST) {
 		$nacionalidad = $_POST['nacionalidad'];
 	}else{
 		$nacionalidad = 'Domnicano';
-		
 	}
 	// Validar el Vehiculo 
 	$model = validateModel($_POST['marca'], $_POST['modelo'], $_POST['tipo']);
 	if($model != 'Ok'){
 		exit("41 /".$model."/00 ");
 	}
+	//Validar Placa
+	$validarPlaca = validatePlaca($_REQUEST['placa'], $_REQUEST['tipo'] );
+	if($validarPlaca != 'Ok'){
+		exit("41 /".$validarPlaca."/00 ");
+	}
+
 	//Valida el total si la orden lo contiene
 	if($_POST['total']){
 		
