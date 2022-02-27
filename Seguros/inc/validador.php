@@ -79,15 +79,20 @@
 		$digito = substr($placa, 0,1);
 		$query = mysql_query("SELECT * from seguro_tarifas WHERE veh_tipo ='".$tipoVehiculo."'");
     	$row = mysql_fetch_array($query);
-		$placasActivas = explode(',',$row['placas']);
-		foreach($placasActivas as $placaActiva){
-			if($placaActiva == $digito){
-				$respuesta = 'Lo tiene';
-				break;
-			}else{
-				$respuesta = 'No lo tiene';
-			}
-		  }
+
+		if($row['placas']){
+			$placasActivas = explode(',',$row['placas']);
+			foreach($placasActivas as $placaActiva){
+				if($placaActiva == $digito){
+					$respuesta = 'OK';
+					break;
+				}else{
+					$respuesta = 'La placa '.$placa.' no corresponde al tipo de vehículo seleccionado';
+				}
+			  }
+		}else{
+			$respuesta = 'OK';
+		}
 
 		//Si no aplica con un digito Validar con dos devuelve OK 
 		
