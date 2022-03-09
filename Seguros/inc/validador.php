@@ -76,15 +76,14 @@
 	}
 	function validatePlaca($placa, $tipoVehiculo){
 		//Validar el primer dijito devuelve OK 
-		$digito = substr($placa, 0,1);
 		$query = mysql_query("SELECT * from seguro_tarifas WHERE veh_tipo ='".$tipoVehiculo."'");
     	$row = mysql_fetch_array($query);
 
 		if($row['placas']){
 			$placasActivas = explode(',',$row['placas']);
 			$existe = 'false';
-			$cont = 0;
 			foreach($placasActivas as $placaActiva){
+				$digito = substr($placa, 0,1);
 				if($placaActiva == $digito){
 					$respuesta = 'Ok';
 					$existe = 'true';
@@ -97,10 +96,9 @@
 						break;
 					}
 				}
-				$cont++;
 			  }
 			  if($existe == 'false'){
-				$respuesta = 'La placa '.$placa.' no corresponde al tipo de vehículo seleccionado'.$cont;
+				$respuesta = 'La placa '.$placa.' no corresponde al tipo de vehículo seleccionado';
 			 }
 		}else{
 			$respuesta = 'Ok';
