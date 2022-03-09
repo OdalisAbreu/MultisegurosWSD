@@ -83,6 +83,7 @@
 		if($row['placas']){
 			$placasActivas = explode(',',$row['placas']);
 			$existe = 'false';
+			$cont = 0;
 			foreach($placasActivas as $placaActiva){
 				if($placaActiva == $digito){
 					$respuesta = 'Ok';
@@ -96,9 +97,10 @@
 						break;
 					}
 				}
+				$cont++
 			  }
 			  if($existe == 'false'){
-				$respuesta = 'La placa '.$placa.' no corresponde al tipo de vehículo seleccionado';
+				$respuesta = 'La placa '.$placa.' no corresponde al tipo de vehículo seleccionado'.$cont;
 			 }
 		}else{
 			$respuesta = 'Ok';
