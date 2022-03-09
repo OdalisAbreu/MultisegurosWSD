@@ -97,7 +97,7 @@
 						break;
 					}
 				}
-				$cont++
+				$cont++;
 			  }
 			  if($existe == 'false'){
 				$respuesta = 'La placa '.$placa.' no corresponde al tipo de vehículo seleccionado'.$cont;
