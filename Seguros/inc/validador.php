@@ -72,7 +72,6 @@
 			}else{
 				return 'Ok';
 			}
-			
 	}
 	function validatePlaca($placa, $tipoVehiculo){
 		//Validar el primer dijito devuelve OK 
@@ -103,9 +102,7 @@
 		}else{
 			$respuesta = 'Ok';
 		}
-
 		//Si no aplica con un digito Validar con dos devuelve OK 
-		
 		//Si no tiene nada devuelve OK
 		return $respuesta;
 	}	
